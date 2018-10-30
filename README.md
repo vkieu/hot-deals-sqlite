@@ -1,0 +1,2 @@
+# hot-deals-sqlite
+Replica!!!
