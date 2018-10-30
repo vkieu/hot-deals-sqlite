@@ -1,0 +1,80 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow:hidden;
+}
+
+table {
+    width:100%;
+}
+
+table td, table th {
+    padding: 5 0 0 0;
+}
+
+table th {
+    background-color: #FF0000;
+}
+
+table td {
+    text-align:left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th.product-title {
+
+}
+
+table th.price, table td.price {
+    text-align:right;
+}
+
+table td.discount {
+    text-align:center;
+}
+
+table#products img.link-image {
+    width:100px;
+    height:100px;
+}
+
+table#products tr.rowodd {
+    background-color: #d7c8c8;
+}
+
+table#products tr.roweven {
+    background-color: #d7d8c8;
+}
+
+img.img-comment, img.img-vote, img.img-mark-for-delete, img.img-found, img.img-email {
+    width:18px;
+    height:18px;
+}
+
+td.tr-deleted {
+    background-color:#d2cccc;
+    text-align:center;
+}
+
+div#search-tool {
+    height:50px;
+}
+
+div#content-header {
+    padding-right:21px;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+table#products-header{
+    height:53px;
+}
+
+div#content {
+    position:absolute;
+    top: 120px;
+    left:8px;
+    right:5px;
+    bottom:0px;
+    overflow-y:scroll;
+}​

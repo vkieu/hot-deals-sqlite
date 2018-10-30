@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="cache-control" content="max-age=0"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta http-equiv="expires" content="0"/>
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT"/>
+    <meta http-equiv="pragma" content="no-cache"/>
+
+    <title>[[${title}]]</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="/css/base.css">
+    <script src="/script/jquery-3.3.1.min.js"></script>
+    <script src="/script/product.js"></script>
+</head>
+
+<body>
+<div id="search-tool">
+    <span>Search</span>
+</div>
+<div id="content-header">
+    <table id="products-header">
+        <tbody>
+        <tr>
+            <th class="product-title">Title</th>
+            <th style="width:78px;"><a id="emailMe" href="#"><img class="img-email" src="/images/if_Mail_613533.png" title="email selected product(s)"/></a></th>
+            <th style="width:88px;" class="price">Price</th>
+            <th style="width:58px;" class="discount">%Off</th>
+            <th style="width:198px;">Misc</th>
+            <th style="width:128px;">Link</th>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div id="content">
+    <table id="products">
+        <colgroup>
+            <col />
+            <col style="width:80px;"/>
+            <col style="width:90px;"/>
+            <col style="width:60px;"/>
+            <col style="width:200px;"/>
+            <col style="width:120px;"/>
+        </colgroup>
+        <tbody>
+        <tr th:each="product,iterStat : ${products}" th:class="${iterStat.odd}?'rowodd':'roweven'"
+            th:id="'product_'+${product.id}">
+            <td>
+                <a th:href="${product.detailedLink}" target="_blank" th:text="${product.title}"></a>
+                <div th:text="${product.description}"></div>
+            </td>
+            <td>
+                <input type="checkbox" th:value="${product.id}" name="productId"/>
+                <a th:unless="${product.markedForDelete == true}" class="mark-for-delete"
+                   th:href="'javascript:markForDelete(\'' + ${product.id} + '\')'" title="hide this product"><img
+                        src="/images/if_cross_48_10298.png" class="img-mark-for-delete"/></a>
+            </td>
+            <td class="price" th:text="${product.priceString}"></td>
+            <td class="discount"
+                th:text="${product.percentageDiscount == 0 ? '&nbsp;' : product.discountString}"></td>
+            <td>
+                <img class="img-comment" src="/images/if_comment_48_10286.png"/>[[${product.numberOfComments}]],
+                <br/><img class="img-vote" src="/images/if_thumbs_up_48_10362.png"/>[[${product.voteString}]]
+                <span th:unless="${product.dateFound == 0}">
+					<br/><img class="img-found" src="/images/if_search_48_10348.png">[[${#dates.format(new java.util.Date(product.dateFound), 'dd-MMM-yyyy')}]]
+				</span>
+            </td>
+            <td>
+                <a th:href="${product.detailedLink}" target="_blank">
+                    <img class="link-image" th:src="${product.imageLink}" />
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+
+</html>
